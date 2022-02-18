@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK.ASTable.ConsoleApp", "DK.ASTable.ConsoleApp\DK.ASTable.ConsoleApp.csproj", "{99610BF5-6FBE-486E-8C25-7C475999DAF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DK.AzureTableStorage.Operations", "DK.AzureTableStorage.Operations\DK.AzureTableStorage.Operations.csproj", "{ADE29320-C1AE-4DAE-A794-1E2C3436C662}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99610BF5-6FBE-486E-8C25-7C475999DAF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99610BF5-6FBE-486E-8C25-7C475999DAF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99610BF5-6FBE-486E-8C25-7C475999DAF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99610BF5-6FBE-486E-8C25-7C475999DAF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE29320-C1AE-4DAE-A794-1E2C3436C662}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE29320-C1AE-4DAE-A794-1E2C3436C662}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE29320-C1AE-4DAE-A794-1E2C3436C662}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE29320-C1AE-4DAE-A794-1E2C3436C662}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4E74E02A-815F-4A13-9248-9A8CF600D074}
+	EndGlobalSection
+EndGlobal
