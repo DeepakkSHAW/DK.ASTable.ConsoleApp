@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using DK.AzureTableStorage.Operations;
 using DK.AzureTableStorage.Operations.Models;
+using DK.AzureTableStorage.Operations.Services;
 
 namespace DK.ASTable.ConsoleApp
 {
@@ -19,7 +19,7 @@ namespace DK.ASTable.ConsoleApp
                 var azTHandler = ActivatorUtilities.CreateInstance<AzureTableHandler>(host.Services);
 
                 //New Order >> POST Operation
-                var aOrder = new OrderItemEntity("CUST_001") { ItemName = "Milk", Price = 5.5, Quantity = 2, OrderRemarks = "2 Suger each" };
+                var aOrder = new OrderItemEntity("CUST_003") { ItemName = "Milk", Price = 5.5, Quantity = 2, OrderRemarks = "2 Suger each" };
                 var newOrder = await azTHandler.NewOrderAsync(aOrder);
                 DisplayOrder(newOrder, "--New Order Placed--");
 
@@ -38,6 +38,14 @@ namespace DK.ASTable.ConsoleApp
                 //All orders for all customer >> Get All row from Table
                 var allDorderForAllCustomers = await azTHandler.GetOrdersAsync();
                 Console.WriteLine($"--All Orders from Table--"); foreach (var order in allDorderForAllCustomers) DisplayOrder(order);
+
+                //Update Order >> Delete a Order
+                aOrder.ItemName = "Milk Shake";
+                var updateOrder = await azTHandler.UpdateOrdersAsync(aOrder);
+
+                //Delete Order >> Delete a Order
+                //var deleteOrder = await azTHandler.DeleteOrdersAsync(aOrder);
+
             }
             catch (Exception ex)
             {

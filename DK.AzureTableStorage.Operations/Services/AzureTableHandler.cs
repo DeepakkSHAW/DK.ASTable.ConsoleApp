@@ -3,16 +3,12 @@ using Microsoft.Azure.Cosmos.Table;
 using Microsoft.Extensions.Configuration;
 
 
-namespace DK.AzureTableStorage.Operations
+namespace DK.AzureTableStorage.Operations.Services
 {
-    public interface IAzureTableHandler
-    {
-        public Task<OrderItemEntity> NewOrderAsync(OrderItemEntity order);
-        public Task<List<OrderItemEntity>> GetOrdersAsync();
-        public Task<List<OrderItemEntity>> GetOrdersAsync(string customerID);
-        public Task<OrderItemEntity> GetOrdersAsync(string customerID, string orderID);
-        public Task<List<OrderItemEntity>> GetOrdersAsync(string customerID, DateTime orderDate);
-    }
+    //public interface IAzureTableHandler
+    //{
+
+    //}
 
         public class AzureTableHandler : IAzureTableHandler
     {
@@ -66,10 +62,10 @@ namespace DK.AzureTableStorage.Operations
             return tableResult;
         }
 
-        public async Task<List<OrderItemEntity>> GetOrdersAsync(string customerID, DateTime orderDate)
+        public async Task<List<OrderItemEntity>> GetOrdersAsync(string customerID, DateTime? orderDate)
         {
-            var startDate = orderDate.Date;
-            var nextDate = orderDate.AddDays(1).Date;
+            var startDate = orderDate.HasValue ? orderDate.Value: DateTime.MinValue;
+            var nextDate = startDate.AddDays(1).Date;
             var table = await GetCloudTable();
 
             List<OrderItemEntity> tableResult = new();
@@ -84,6 +80,18 @@ namespace DK.AzureTableStorage.Operations
         {
             var retrieveOperation = TableOperation.Retrieve<OrderItemEntity>(customerID, orderID);
             return await ExecuteTableOperation(retrieveOperation) as OrderItemEntity;
+        }
+
+        public async Task<OrderItemEntity> DeleteOrdersAsync(OrderItemEntity order)
+        {
+            var deleteOperation = TableOperation.Delete(order);
+            return await ExecuteTableOperation(deleteOperation) as OrderItemEntity;
+        }
+
+        public async Task<OrderItemEntity> UpdateOrdersAsync(OrderItemEntity order)
+        {
+            var insertOrMergeOperation = TableOperation.Merge(order);
+            return await ExecuteTableOperation(insertOrMergeOperation) as OrderItemEntity;
         }
     }
 }
